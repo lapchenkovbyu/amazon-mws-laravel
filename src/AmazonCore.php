@@ -3,6 +3,7 @@
 use Config, Log;
 use DateTime;
 use Exception;
+use AmazonRequestException;
 
 
 /**
@@ -350,7 +351,8 @@ abstract class AmazonCore
      * is not 200, the incident and error message returned are logged.
      * @param array $r <p>The HTTP response array. Expects the array to have
      * the fields <i>code</i>, <i>body</i>, and <i>error</i>.</p>
-     * @return boolean <b>TRUE</b> if the status is 200 OK, <b>FALSE</b> otherwise.
+     * @return boolean <b>TRUE</b> if the status is 200 OK.
+     * @throws AmazonRequestException
      */
     protected function checkResponse($r)
     {
@@ -364,7 +366,8 @@ abstract class AmazonCore
             $xml = simplexml_load_string($r['body'])->Error;
             $this->log("Bad Response! " . $r['code'] . " " . $r['error'] . ": " . $xml->Code . " - " . $xml->Message,
                 'Urgent');
-            return false;
+            throw new AmazonRequestException("Bad Response!", $r['code'],
+                null, $xml->Code, $xml->Message, $xml);
         }
     }
 
