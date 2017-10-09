@@ -1,6 +1,6 @@
 <?php
 
-class AmazonRequestException extends Exception{
+class AmazonRequestException extends \Exception{
     /**
      * Response code from Amazon
      * @var integer
@@ -20,7 +20,7 @@ class AmazonRequestException extends Exception{
     private $rawXml;
 
     public function __construct($message, $code = 0,
-                                Exception $previous = null, $amazonCode = null,
+                                \Exception $previous = null, $amazonCode = null,
                                 $amazonText = null, $rawXml = null) {
         $this->amazonCode = $amazonCode;
         $this->amazonText = $amazonText;
