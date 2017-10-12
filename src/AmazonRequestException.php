@@ -1,4 +1,5 @@
 <?php
+namespace Sonnenglas\AmazonMws;
 
 class AmazonRequestException extends \Exception{
     /**
