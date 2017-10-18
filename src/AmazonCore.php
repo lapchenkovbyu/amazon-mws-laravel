@@ -3,7 +3,6 @@
 use Config, Log;
 use DateTime;
 use Exception;
-use AmazonRequestException;
 
 
 /**
