@@ -31,18 +31,20 @@ class AmazonRequestException extends \Exception{
 
     /**
      * Get readable message for displaying to user
-     * @return null|string
+     * @return string
      */
-    public function toReadableText(){
-        return $this->amazonText;
+    public function toReadableText(): string
+    {
+        return $this->amazonText ?? '';
     }
 
     /**
      * Get response code
-     * @return int|null
+     * @return int
      */
-    public function getAmazonResponseCode(){
-        return $this->amazonCode;
+    public function getAmazonResponseCode(): int
+    {
+        return $this->amazonCode ?? 0;
     }
 
 }
